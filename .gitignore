@@ -38,3 +38,4 @@ Release/
 x64/
 *.user
 *.filters
+*.vcxproj
