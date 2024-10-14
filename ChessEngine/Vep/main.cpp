@@ -4,7 +4,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "VEO", sf::Style::Close | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(1000, 600), "VEO", sf::Style::Close | sf::Style::Close);
  
     window.setVerticalSyncEnabled(true);
 
@@ -48,7 +48,7 @@ int main()
             }
         }
 
-        Painter::DrawBoard(window);
+        Painter::DrawBoard(window, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
     }
     return 0;
 }
