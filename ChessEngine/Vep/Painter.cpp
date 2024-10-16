@@ -5,13 +5,13 @@
 #include <vector>
 #include <sstream>
 
+const int Painter::BoardXOffset = 180;
+const int Painter::BoardYOffset = 75;
+const float Painter::SpaceSize = 60.f;
+
 void Painter::DrawBoard(sf::RenderWindow& window, std::string fenString)
 {
     std::array<std::string, 8> boardMatrix = GetBoardAsChars2D(fenString);
-
-    int boardUpperLeftOffsetX = 180;
-    int boardUpperLeftOffsetY = 75;
-    float spaceSize = 60.f;
 
     sf::Color whiteColor = sf::Color(245, 222, 179);
     sf::Color blackColor = sf::Color(139, 69, 19);
@@ -58,8 +58,8 @@ void Painter::DrawBoard(sf::RenderWindow& window, std::string fenString)
     {
         for (int row = 0; row <= 7; row++)
         {
-            sf::RectangleShape space = sf::RectangleShape(sf::Vector2f(spaceSize, spaceSize));
-            space.setPosition(boardUpperLeftOffsetX + (column * spaceSize), boardUpperLeftOffsetY + (row * spaceSize));
+            sf::RectangleShape space = sf::RectangleShape(sf::Vector2f(SpaceSize, SpaceSize));
+            space.setPosition(BoardXOffset + (column * SpaceSize), BoardYOffset + (row * SpaceSize));
             (column + row) % 2 == 0 ? space.setFillColor(whiteColor) : space.setFillColor(blackColor);
             window.draw(space);
 
@@ -80,62 +80,62 @@ void Painter::DrawBoard(sf::RenderWindow& window, std::string fenString)
             {
             case 'P':
                 whitePawnSprite.setTexture(whitePawnTexture);
-                whitePawnSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whitePawnSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whitePawnSprite);
                 break;
             case 'R':
                 whiteRookSprite.setTexture(whiteRookTexture);
-                whiteRookSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whiteRookSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whiteRookSprite);
                 break;
             case 'N':
                 whiteKnightSprite.setTexture(whiteKnightTexture);
-                whiteKnightSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whiteKnightSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whiteKnightSprite);
                 break;
             case 'B':
                 whiteBishopSprite.setTexture(whiteBishopTexture);
-                whiteBishopSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whiteBishopSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whiteBishopSprite);
                 break;
             case 'K':
                 whiteKingSprite.setTexture(whiteKingTexture);
-                whiteKingSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whiteKingSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whiteKingSprite);
                 break;
             case 'Q':
                 whiteQueenSprite.setTexture(whiteQueenTexture);
-                whiteQueenSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                whiteQueenSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(whiteQueenSprite);
                 break;
             case 'p':
                 blackPawnSprite.setTexture(blackPawnTexture);
-                blackPawnSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackPawnSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackPawnSprite);
                 break;
             case 'r':
                 blackRookSprite.setTexture(blackRookTexture);
-                blackRookSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackRookSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackRookSprite);
                 break;
             case 'n':
                 blackKnightSprite.setTexture(blackKnightTexture);
-                blackKnightSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackKnightSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackKnightSprite);
                 break;
             case 'b':
                 blackBishopSprite.setTexture(blackBishopTexture);
-                blackBishopSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackBishopSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackBishopSprite);
                 break;
             case 'k':
                 blackKingSprite.setTexture(blackKingTexture);
-                blackKingSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackKingSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackKingSprite);
                 break;
             case 'q':
                 blackQueenSprite.setTexture(blackQueenTexture);
-                blackQueenSprite.setPosition(boardUpperLeftOffsetX + (column * spaceSize), (boardUpperLeftOffsetY + 5) + (row * spaceSize));
+                blackQueenSprite.setPosition(BoardXOffset + (column * SpaceSize), (BoardYOffset + 5) + (row * SpaceSize));
                 window.draw(blackQueenSprite);
                 break;
             default:
@@ -150,6 +150,32 @@ void Painter::DrawBoard(sf::RenderWindow& window, std::string fenString)
     
 
     window.display();
+}
+
+std::string Painter::TurnClickIntoBoardPosition(int x, int y)
+{
+    std::array<char, 8> rows = { '8', '7', '6', '5', '4', '3', '2', '1'};
+    std::array<char, 8> columns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+    std::string clickedRow;
+    std::string clickedColumn;
+
+    for (int row = 0; row <= 7; row++)
+    {
+        if (x >( BoardXOffset + (row * SpaceSize))) {
+            clickedRow = rows[row];
+        }
+    }
+
+    for (int column = 0; column <= 7; column++)
+    {
+        if (y > (BoardYOffset + (column * SpaceSize))) {
+            clickedColumn = columns[column];
+        }
+    }
+
+    std::string result = clickedColumn + clickedRow;
+    std::cout << result << std::endl;
+    return result;
 };
 
 std::array<std::string, 8> Painter::GetBoardAsChars2D(std::string fenString)
