@@ -9,7 +9,7 @@ const int Painter::BoardXOffset = 180;
 const int Painter::BoardYOffset = 75;
 const float Painter::SpaceSize = 60.f;
 
-void Painter::DrawBoard(sf::RenderWindow& window, Board board)
+void Painter::DrawBoardFromFenString(sf::RenderWindow& window, Board board)
 {
     std::array<std::string, 8> boardMatrix = board.GetBoardAsChars2D();
 

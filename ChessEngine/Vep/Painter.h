@@ -6,7 +6,7 @@
 class Painter
 {
 public:
-	static void DrawBoard(sf::RenderWindow& window, Board board);
+	static void DrawBoardFromFenString(sf::RenderWindow& window, Board board);
 	static std::string TurnClickIntoBoardPosition(int x, int y);
 private:
 	static const float SpaceSize;
