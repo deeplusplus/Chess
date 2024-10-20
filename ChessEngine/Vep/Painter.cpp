@@ -9,48 +9,48 @@ const int Painter::BoardXOffset = 180;
 const int Painter::BoardYOffset = 75;
 const float Painter::SpaceSize = 60.f;
 
-void Painter::DrawBoard(sf::RenderWindow& window, std::string fenString)
+void Painter::DrawBoard(sf::RenderWindow& window, Board board)
 {
-    std::array<std::string, 8> boardMatrix = GetBoardAsChars2D(fenString);
+    std::array<std::string, 8> boardMatrix = board.GetBoardAsChars2D();
 
     sf::Color whiteColor = sf::Color(245, 222, 179);
     sf::Color blackColor = sf::Color(139, 69, 19);
 
     sf::Texture whitePawnTexture;
-    whitePawnTexture.loadFromFile("whitePawn.png");
+    whitePawnTexture.loadFromFile("./Assets/whitePawn.png");
 
     sf::Texture whiteRookTexture;
-    whiteRookTexture.loadFromFile("whiteRook.png");
+    whiteRookTexture.loadFromFile("./Assets/whiteRook.png");
 
     sf::Texture whiteKnightTexture;
-    whiteKnightTexture.loadFromFile("whiteKnight.png");
+    whiteKnightTexture.loadFromFile("./Assets/whiteKnight.png");
 
     sf::Texture whiteBishopTexture;
-    whiteBishopTexture.loadFromFile("whiteBishop.png");
+    whiteBishopTexture.loadFromFile("./Assets/whiteBishop.png");
 
     sf::Texture whiteKingTexture;
-    whiteKingTexture.loadFromFile("whiteKing.png");
+    whiteKingTexture.loadFromFile("./Assets/whiteKing.png");
 
     sf::Texture whiteQueenTexture;
-    whiteQueenTexture.loadFromFile("whiteQueen.png");
+    whiteQueenTexture.loadFromFile("./Assets/whiteQueen.png");
 
     sf::Texture blackPawnTexture;
-    blackPawnTexture.loadFromFile("blackPawn.png");
+    blackPawnTexture.loadFromFile("./Assets/blackPawn.png");
 
     sf::Texture blackRookTexture;
-    blackRookTexture.loadFromFile("blackRook.png");
+    blackRookTexture.loadFromFile("./Assets/blackRook.png");
 
     sf::Texture blackKnightTexture;
-    blackKnightTexture.loadFromFile("blackKnight.png");
+    blackKnightTexture.loadFromFile("./Assets/blackKnight.png");
 
     sf::Texture blackBishopTexture;
-    blackBishopTexture.loadFromFile("blackBishop.png");
+    blackBishopTexture.loadFromFile("./Assets/blackBishop.png");
 
     sf::Texture blackKingTexture;
-    blackKingTexture.loadFromFile("blackKing.png");
+    blackKingTexture.loadFromFile("./Assets/blackKing.png");
 
     sf::Texture blackQueenTexture;
-    blackQueenTexture.loadFromFile("blackQueen.png");
+    blackQueenTexture.loadFromFile("./Assets/blackQueen.png");
 
     window.clear(sf::Color(222, 184, 135));
 
@@ -161,14 +161,14 @@ std::string Painter::TurnClickIntoBoardPosition(int x, int y)
 
     for (int row = 0; row <= 7; row++)
     {
-        if (x >( BoardXOffset + (row * SpaceSize))) {
+        if (y > (BoardYOffset + (row * SpaceSize))) {
             clickedRow = rows[row];
         }
     }
 
     for (int column = 0; column <= 7; column++)
     {
-        if (y > (BoardYOffset + (column * SpaceSize))) {
+        if (x > (BoardXOffset + (column * SpaceSize))) {
             clickedColumn = columns[column];
         }
     }
@@ -177,65 +177,3 @@ std::string Painter::TurnClickIntoBoardPosition(int x, int y)
     std::cout << result << std::endl;
     return result;
 };
-
-std::array<std::string, 8> Painter::GetBoardAsChars2D(std::string fenString)
-{
-    std::array<std::string, 8> board;
-
-    std::stringstream stringStream(fenString);
-    std::string segment;
-    std::vector<std::string> seglist;
-
-    while (std::getline(stringStream, segment, '/'))
-    {
-        seglist.push_back(segment);
-    }
-
-    for (int row = 0; row <= 7; row++)
-    {
-        std::string fenRow = seglist[row];
-        board[row] = ReplaceNumberWithBlanks(fenRow);
-    }
-
-    return board;
-};
-
-std::string Painter::ReplaceNumberWithBlanks(std::string fenRow)
-{
-    std::string newFenRow;
-
-    for (size_t character = 0; character < fenRow.size(); character++)
-    {
-        switch (fenRow[character])
-        {
-        case('1'):
-            newFenRow += "_";
-            break;
-        case('2'):
-            newFenRow += "__";
-            break;
-        case('3'):
-            newFenRow += "___";
-            break;
-        case('4'):
-            newFenRow += "____";
-            break;
-        case('5'):
-            newFenRow += "_____";
-            break;
-        case('6'):
-            newFenRow += "_______";
-            break;
-        case('7'):
-            newFenRow += "_______";
-            break;
-        case('8'):
-            newFenRow += "________";
-            break;
-        default:
-            newFenRow += fenRow[character];
-        }
-    }
-
-    return newFenRow;
-}

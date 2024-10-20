@@ -7,6 +7,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 600), "VEO", sf::Style::Close | sf::Style::Close);
  
     window.setVerticalSyncEnabled(true);
+    Board board = Board();
 
     while (window.isOpen())
     {
@@ -49,7 +50,8 @@ int main()
             }
         }
 
-        Painter::DrawBoard(window, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+        // "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        Painter::DrawBoard(window, board);
     }
     return 0;
 }
